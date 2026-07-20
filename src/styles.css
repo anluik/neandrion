@@ -97,11 +97,16 @@ body {
     color: var(--t1);
     font-family: var(--font-sans);
     background: var(--bg0);
+    overflow-wrap: anywhere;
     transition:
         background-color 0.5s ease,
         color 0.5s ease;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+    background: var(--magenta-soft);
 }
 
 a {
