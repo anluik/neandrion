@@ -55,6 +55,7 @@ The implemented look comes from the `HomeScene` design in the "Neandron Design S
 - Each view/page lives in its own dedicated package under `src/views/<view>/` (e.g. `src/views/home/`), containing its main `<Name>View.tsx` and its private subcomponents, grouped in subfolders where helpful (e.g. `src/views/home/exhibits/`).
 - `src/components/` is only for components genuinely shared across packages; `src/hooks/` for shared hooks.
 - Imports: use the `#/` alias when importing across packages, relative paths within a package.
+- Use direct type imports instead of accessing types via namespace (e.g. React.ReactNode vs ReactNode + type import) unless 3 or more types have been imported from the same namespace in one file.
 
 ## Theming mechanics
 
