@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { accentColor, statusColor } from "#/experiments";
+import { statusDotClass } from "#/experiments";
 import type { Experiment, ExperimentGroup } from "#/experiments";
 
 export default function ShelfItem({
@@ -9,12 +9,6 @@ export default function ShelfItem({
     item: Experiment;
     group: ExperimentGroup;
 }) {
-    const accent = accentColor[group.accent];
-    const rowStyle = {
-        "--grp-c": accent.c,
-        "--grp-bg": accent.bg
-    } as React.CSSProperties;
-
     const content = (
         <>
             <span className="mono-label w-7.5 shrink-0 tracking-[0.06em]!">
@@ -22,12 +16,7 @@ export default function ShelfItem({
             </span>
             <span className="min-w-0 flex-1 truncate">{item.title}</span>
             <span
-                className="glow-dot size-1.5!"
-                style={
-                    {
-                        "--dot-c": statusColor[item.status]
-                    } as React.CSSProperties
-                }
+                className={`glow-dot size-1.5! ${statusDotClass[item.status]}`}
                 title={item.status}
             />
         </>
@@ -35,7 +24,7 @@ export default function ShelfItem({
 
     if (item.to) {
         return (
-            <Link to={item.to} className="shelf-link" style={rowStyle}>
+            <Link to={item.to} className={`shelf-link accent-${group.accent}`}>
                 {content}
             </Link>
         );
@@ -43,8 +32,7 @@ export default function ShelfItem({
 
     return (
         <span
-            className="shelf-link cursor-default opacity-75"
-            style={rowStyle}
+            className={`shelf-link accent-${group.accent} cursor-default opacity-75`}
             title="Not built yet"
         >
             {content}

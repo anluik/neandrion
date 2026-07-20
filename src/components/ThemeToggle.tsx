@@ -41,8 +41,6 @@ export default function ThemeToggle() {
             ? "Theme: night. Click to switch to day mode."
             : "Theme: day. Click to switch to night mode.";
 
-    const dotColor = theme === "dark" ? "var(--magenta)" : "var(--amber)";
-
     return (
         <button
             type="button"
@@ -51,10 +49,7 @@ export default function ThemeToggle() {
             title={label}
             className="ghost-control flex items-center gap-1.75 rounded-full! px-3! py-1.5! text-[11px] tracking-[0.08em]"
         >
-            <span
-                className="glow-dot transition-all duration-400"
-                style={{ "--dot-c": dotColor } as React.CSSProperties}
-            />
+            <span className="glow-dot theme-dot transition-all duration-400" />
             <span>{theme === "dark" ? "NIGHT" : "DAY"}</span>
         </button>
     );

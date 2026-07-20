@@ -12,40 +12,32 @@ import UndoChip from "./exhibits/UndoChip";
 
 interface FloatSpot {
     className: string;
-    dur: string;
-    delay: string;
     exhibit: React.ReactNode;
 }
 
 const floats: Array<FloatSpot> = [
     {
-        className: "left-[9%] top-[16%]",
-        dur: "7s",
-        delay: "0s",
+        className: "left-[9%] top-[16%] [--float-dur:7s] [--float-delay:0s]",
         exhibit: <MagneticPill />
     },
     {
-        className: "right-[11%] top-[13%]",
-        dur: "9s",
-        delay: "1.2s",
+        className:
+            "right-[11%] top-[13%] [--float-dur:9s] [--float-delay:1.2s]",
         exhibit: <BreakbeatBars />
     },
     {
-        className: "right-[8%] bottom-[24%]",
-        dur: "8s",
-        delay: "0.6s",
+        className:
+            "right-[8%] bottom-[24%] [--float-dur:8s] [--float-delay:0.6s]",
         exhibit: <ElasticTabs />
     },
     {
-        className: "left-[10%] bottom-[22%]",
-        dur: "10s",
-        delay: "2s",
+        className:
+            "left-[10%] bottom-[22%] [--float-dur:10s] [--float-delay:2s]",
         exhibit: <StaggerCard />
     },
     {
-        className: "left-[22%] bottom-[7%]",
-        dur: "8.5s",
-        delay: "1.5s",
+        className:
+            "left-[22%] bottom-[7%] [--float-dur:8.5s] [--float-delay:1.5s]",
         exhibit: <UndoChip />
     }
 ];
@@ -55,22 +47,8 @@ export default function HomeView() {
         <main className="relative min-h-full overflow-hidden">
             <div className="stage-sky" />
             <div className="stage-ember" />
-            <div
-                className="bloom left-[-8%] top-[6%] h-95 w-120"
-                style={
-                    {
-                        "--bloom-c": "oklch(0.72 0.23 350 / 0.15)"
-                    } as React.CSSProperties
-                }
-            />
-            <div
-                className="bloom right-[-6%] top-[30%] h-90 w-110 [animation-delay:2.4s] [animation-duration:12s]"
-                style={
-                    {
-                        "--bloom-c": "oklch(0.8 0.13 195 / 0.12)"
-                    } as React.CSSProperties
-                }
-            />
+            <div className="bloom bloom-warm left-[-8%] top-[6%] h-95 w-120" />
+            <div className="bloom bloom-cool right-[-6%] top-[30%] h-90 w-110 [--bloom-dur:12s] [--bloom-delay:2.4s]" />
 
             <div className="relative z-2 flex min-h-dvh flex-col items-center justify-center px-6 py-16 text-center md:px-15">
                 <div className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-(--cyan) [text-shadow:0_0_12px_var(--cyan-soft)]">
@@ -102,22 +80,13 @@ export default function HomeView() {
                 <span
                     key={i}
                     className={`float-y absolute z-3 hidden md:block ${spot.className}`}
-                    style={
-                        {
-                            "--float-dur": spot.dur,
-                            "--float-delay": spot.delay
-                        } as React.CSSProperties
-                    }
                 >
                     {spot.exhibit}
                 </span>
             ))}
 
             <span className="mono-label absolute bottom-[8%] right-[10%] z-3 hidden items-center gap-2 tracking-widest! md:flex">
-                <span
-                    className="glow-dot size-1.5!"
-                    style={{ "--dot-c": "var(--amber)" } as React.CSSProperties}
-                />
+                <span className="glow-dot dot-amber size-1.5!" />
                 #004 horizon-gradient — you’re looking at it
             </span>
 

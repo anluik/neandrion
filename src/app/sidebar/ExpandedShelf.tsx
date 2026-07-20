@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import ThemeToggle from "#/components/ThemeToggle";
-import { accentColor, experimentGroups } from "#/experiments";
+import { experimentGroups } from "#/experiments";
 import LogoChip from "./LogoChip";
 import ShelfItem from "./ShelfItem";
 
@@ -36,14 +36,7 @@ export default function ExpandedShelf({
                 {experimentGroups.map(group => (
                     <div key={group.label}>
                         <div className="flex items-center gap-2 px-1.5 pb-2">
-                            <span
-                                className="glow-dot"
-                                style={
-                                    {
-                                        "--dot-c": accentColor[group.accent].c
-                                    } as React.CSSProperties
-                                }
-                            />
+                            <span className={`glow-dot dot-${group.accent}`} />
                             <span className="mono-label">{group.label}</span>
                         </div>
                         <div className="flex flex-col gap-0.5">

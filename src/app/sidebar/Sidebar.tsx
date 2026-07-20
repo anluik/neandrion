@@ -31,27 +31,19 @@ export default function Sidebar() {
 
     return (
         <aside
-            className="relative z-10 shrink-0 overflow-hidden border-r border-(--line) bg-(--side-bg)"
-            style={{
-                width: collapsed ? "3.5rem" : "250px",
-                transition: animate
-                    ? "width 320ms cubic-bezier(0.4, 0, 0.2, 1), background-color 500ms ease, border-color 500ms ease"
-                    : "background-color 500ms ease, border-color 500ms ease"
-            }}
+            className={`relative z-10 shrink-0 overflow-hidden border-r border-(--line) bg-(--side-bg) ${collapsed ? "w-14" : "w-62.5"} ${animate ? "shelf-frame--animate" : "shelf-frame"}`}
         >
             <div
                 aria-hidden={!collapsed}
                 inert={!collapsed}
-                className="absolute inset-y-0 left-0 transition-opacity duration-200 ease-out"
-                style={{ opacity: collapsed ? 1 : 0 }}
+                className={`absolute inset-y-0 left-0 transition-opacity duration-200 ease-out ${collapsed ? "opacity-100" : "opacity-0"}`}
             >
                 <CollapsedShelf onExpand={toggle} />
             </div>
             <div
                 aria-hidden={collapsed}
                 inert={collapsed}
-                className="absolute inset-y-0 left-0 transition-opacity duration-200 ease-out"
-                style={{ opacity: collapsed ? 0 : 1 }}
+                className={`absolute inset-y-0 left-0 transition-opacity duration-200 ease-out ${collapsed ? "opacity-0" : "opacity-100"}`}
             >
                 <ExpandedShelf onCollapse={toggle} />
             </div>

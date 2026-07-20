@@ -155,7 +155,7 @@ pre code {
     color: var(--t2);
 }
 
-/* Small glowing dot; color via --dot-c */
+/* Small glowing dot; color via --dot-c (set by a .dot-* / .accent-* class) */
 .glow-dot {
     display: inline-block;
     width: 7px;
@@ -164,6 +164,53 @@ pre code {
     flex-shrink: 0;
     background: var(--dot-c);
     box-shadow: 0 0 8px var(--dot-c);
+}
+
+.dot-magenta {
+    --dot-c: var(--magenta);
+}
+
+.dot-cyan {
+    --dot-c: var(--cyan);
+}
+
+.dot-amber {
+    --dot-c: var(--amber);
+}
+
+/* Theme-toggle dot: follows the active theme (set on <html> pre-hydration) */
+.theme-dot {
+    --dot-c: var(--amber);
+}
+
+[data-theme="dark"] .theme-dot {
+    --dot-c: var(--magenta);
+}
+
+/*
+ * Accent groups: set the accent CSS vars a subtree's primitives read —
+ * --grp-* for shelf rows (.shelf-link), --exh-* for exhibit cards
+ * (.exhibit-card). Dots pick their color separately via .dot-* above.
+ */
+.accent-magenta {
+    --grp-c: var(--magenta);
+    --grp-bg: var(--magenta-soft);
+    --exh-c: var(--magenta);
+    --exh-glow: var(--glow-m);
+}
+
+.accent-cyan {
+    --grp-c: var(--cyan);
+    --grp-bg: var(--cyan-soft);
+    --exh-c: var(--cyan);
+    --exh-glow: var(--glow-c);
+}
+
+.accent-amber {
+    --grp-c: var(--amber);
+    --grp-bg: var(--amber-soft);
+    --exh-c: var(--amber);
+    --exh-glow: var(--glow-a);
 }
 
 /* Sidebar experiment row; group accent via --grp-c / --grp-bg */
@@ -189,6 +236,24 @@ pre code {
 .shelf-link:focus-visible {
     outline: 2px solid var(--cyan);
     outline-offset: -2px;
+}
+
+/*
+ * Sidebar frame. Width is toggled via w-* utilities; the width transition is
+ * enabled only after first paint (.shelf-frame--animate) so the persisted
+ * collapsed state applies instantly instead of animating in on load.
+ */
+.shelf-frame {
+    transition:
+        background-color 0.5s ease,
+        border-color 0.5s ease;
+}
+
+.shelf-frame--animate {
+    transition:
+        width 320ms cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 0.5s ease,
+        border-color 0.5s ease;
 }
 
 /* Ghost button / control chip with cyan glow on hover */
@@ -241,14 +306,23 @@ pre code {
     transition: all 0.5s ease;
 }
 
-/* Ambient light bloom; color via --bloom-c */
+/* Ambient light bloom; color via --bloom-c, timing via --bloom-dur/--bloom-delay */
 .bloom {
     position: absolute;
     border-radius: 50%;
     background: radial-gradient(closest-side, var(--bloom-c), transparent);
     filter: blur(10px);
-    animation: ns-pulse 9s ease-in-out infinite;
+    animation: ns-pulse var(--bloom-dur, 9s) ease-in-out var(--bloom-delay, 0s)
+        infinite;
     pointer-events: none;
+}
+
+.bloom-warm {
+    --bloom-c: oklch(0.72 0.23 350 / 0.15);
+}
+
+.bloom-cool {
+    --bloom-c: oklch(0.8 0.13 195 / 0.12);
 }
 
 .grain {
@@ -278,6 +352,26 @@ pre code {
 a:hover > .exhibit-card {
     border-color: var(--exh-c, var(--cyan));
     box-shadow: var(--exh-glow, var(--glow-c));
+}
+
+/* Staggered-reveal exhibit bar (#007); width via w-* utility, delay via --line-delay */
+.stagger-line {
+    height: 7px;
+    border-radius: 4px;
+    background: var(--magenta-soft);
+    animation: ns-cascade 3.6s ease var(--line-delay, 0s) infinite;
+}
+
+/* Breakbeat equalizer bar (#009); color + timing via --bar-c/--bar-dur/--bar-delay */
+.beat-bar {
+    width: 6px;
+    height: 34px;
+    border-radius: 3px;
+    transform-origin: bottom;
+    background: var(--bar-c);
+    box-shadow: 0 0 8px var(--bar-c);
+    animation: ns-bar var(--bar-dur, 1s) ease-in-out var(--bar-delay, 0s)
+        infinite;
 }
 
 /* Surface panel for content pages (About etc.) */

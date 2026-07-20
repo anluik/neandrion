@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { accentColor, experimentGroups } from "#/experiments";
+import { experimentGroups } from "#/experiments";
 import LogoChip from "./LogoChip";
 
 export default function CollapsedShelf({ onExpand }: { onExpand: () => void }) {
@@ -21,12 +21,7 @@ export default function CollapsedShelf({ onExpand }: { onExpand: () => void }) {
                     <span
                         key={group.label}
                         title={group.label}
-                        className="glow-dot size-2.25!"
-                        style={
-                            {
-                                "--dot-c": accentColor[group.accent].c
-                            } as React.CSSProperties
-                        }
+                        className={`glow-dot size-2.25! dot-${group.accent}`}
                     />
                 ))}
             </div>
