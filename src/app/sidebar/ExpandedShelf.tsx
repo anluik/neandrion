@@ -19,7 +19,7 @@ export default function ExpandedShelf({
                 >
                     <LogoChip />
                     <span className="font-display text-base font-bold">
-                        Neandron
+                        Neandrion
                     </span>
                 </Link>
                 <button

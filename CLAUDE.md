@@ -30,7 +30,7 @@ Rules that keep styling unified:
 - New pages render inside the shared shell (`src/routes/__root.tsx` → `src/app/App.tsx`: collapsible sidebar "shelf" + scrollable main pane), so they inherit the frame automatically.
 - Experiments are registered in `src/experiments.ts` (index, title, group, status, route). The sidebar and home page both render from this registry — adding an entry there is how something appears in the app.
 
-The implemented look comes from the `HomeScene` design in the "Neandron Design System" project on claude.ai/design (project id `095af710-c352-4292-a59b-770d8f528ce4`) — consult it before redesigning the shell or home page.
+The implemented look comes from the `HomeScene` design in the "Neandrion Design System" project on claude.ai/design (project id `095af710-c352-4292-a59b-770d8f528ce4`) — consult it before redesigning the shell or home page.
 
 ## Stack
 

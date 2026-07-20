@@ -26,7 +26,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
                 content: "width=device-width, initial-scale=1"
             },
             {
-                title: "Neandron"
+                title: "Neandrion"
             }
         ],
         links: [
@@ -46,7 +46,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 <script
                     dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }}
                 />
-                <title>Neandron</title>
+                <title>Neandrion</title>
                 <HeadContent />
             </head>
             <body className="font-sans antialiased wrap-anywhere selection:bg-(--magenta-soft)">
