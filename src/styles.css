@@ -149,7 +149,6 @@ pre code {
     margin-inline: auto;
 }
 
-/* Mono label: indexes, kickers, captions */
 .mono-label {
     font-family: var(--font-mono);
     font-size: 10.5px;
@@ -158,7 +157,6 @@ pre code {
     color: var(--t2);
 }
 
-/* Small glowing dot; color via --dot-c (set by a .dot-* / .accent-* class) */
 .glow-dot {
     display: inline-block;
     width: 7px;
@@ -181,7 +179,6 @@ pre code {
     --dot-c: var(--amber);
 }
 
-/* Theme-toggle dot: follows the active theme (set on <html> pre-hydration) */
 .theme-dot {
     --dot-c: var(--amber);
 }
@@ -190,11 +187,32 @@ pre code {
     --dot-c: var(--magenta);
 }
 
-/*
- * Accent groups: set the accent CSS vars a subtree's primitives read —
- * --grp-* for shelf rows (.shelf-link), --exh-* for exhibit cards
- * (.exhibit-card). Dots pick their color separately via .dot-* above.
- */
+.theme-label-night {
+    display: none;
+}
+
+[data-theme="dark"] .theme-label-night {
+    display: inline;
+}
+
+[data-theme="dark"] .theme-label-day {
+    display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .theme-dot {
+        --dot-c: var(--magenta);
+    }
+
+    :root:not([data-theme="light"]) .theme-label-night {
+        display: inline;
+    }
+
+    :root:not([data-theme="light"]) .theme-label-day {
+        display: none;
+    }
+}
+
 .accent-magenta {
     --grp-c: var(--magenta);
     --grp-bg: var(--magenta-soft);
@@ -216,7 +234,6 @@ pre code {
     --exh-glow: var(--glow-a);
 }
 
-/* Sidebar experiment row; group accent via --grp-c / --grp-bg */
 .shelf-link {
     display: flex;
     align-items: center;
@@ -249,7 +266,6 @@ pre code {
         border-color 0.5s ease;
 }
 
-/* Ghost button / control chip with cyan glow on hover */
 .ghost-control {
     cursor: pointer;
     background: transparent;
@@ -268,7 +284,6 @@ pre code {
     box-shadow: var(--glow-c);
 }
 
-/* The stage: full-height beach-at-dusk scene */
 .stage-sky {
     position: absolute;
     inset: 0;
@@ -299,7 +314,6 @@ pre code {
     transition: all 0.5s ease;
 }
 
-/* Ambient light bloom; color via --bloom-c, timing via --bloom-dur/--bloom-delay */
 .bloom {
     position: absolute;
     border-radius: 50%;
@@ -327,13 +341,11 @@ pre code {
     background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22/%3E%3C/filter%3E%3Crect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22 opacity=%220.6%22/%3E%3C/svg%3E");
 }
 
-/* Floating exhibit wrapper; stagger via --float-dur / --float-delay */
 .float-y {
     animation: ns-float var(--float-dur, 8s) ease-in-out var(--float-delay, 0s)
         infinite;
 }
 
-/* Exhibit surface card; accent via --exh-c / --exh-glow */
 .exhibit-card {
     background: var(--s1);
     border: 1px solid var(--line);
@@ -347,7 +359,6 @@ a:hover > .exhibit-card {
     box-shadow: var(--exh-glow, var(--glow-c));
 }
 
-/* Staggered-reveal exhibit bar (#007); width via w-* utility, delay via --line-delay */
 .stagger-line {
     height: 7px;
     border-radius: 4px;
@@ -355,7 +366,6 @@ a:hover > .exhibit-card {
     animation: ns-cascade 3.6s ease var(--line-delay, 0s) infinite;
 }
 
-/* Breakbeat equalizer bar (#009); color + timing via --bar-c/--bar-dur/--bar-delay */
 .beat-bar {
     width: 6px;
     height: 34px;
@@ -367,7 +377,6 @@ a:hover > .exhibit-card {
         infinite;
 }
 
-/* Surface panel for content pages (About etc.) */
 .panel {
     background: var(--s1);
     border: 1px solid var(--line);

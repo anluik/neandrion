@@ -58,6 +58,7 @@ The implemented look comes from the `HomeScene` design in the "Neandrion Design 
 - `src/components/` is only for components genuinely shared across packages; `src/hooks/` for shared hooks.
 - Imports: use the `#/` alias when importing across packages, relative paths within a package.
 - Use direct type imports instead of accessing types via namespace (e.g. React.ReactNode vs ReactNode + type import) unless 3 or more types have been imported from the same namespace in one file.
+- Keep code comments minimal; only explain non-standard patterns
 
 ## Theming mechanics
 
