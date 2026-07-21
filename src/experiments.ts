@@ -17,14 +17,16 @@ export interface ExperimentGroup {
     items: Array<Experiment>;
 }
 
-/*
- * Status → glow-dot color class. Accent colors are applied directly from
- * `group.accent` via the matching `.accent-*` / `.dot-*` classes in styles.css.
- */
-export const statusDotClass: Record<ExperimentStatus, string> = {
-    live: "dot-cyan",
-    wip: "dot-amber",
-    idea: "dot-magenta"
+export const statusAccent: Record<ExperimentStatus, AccentName> = {
+    live: "cyan",
+    wip: "amber",
+    idea: "magenta"
+};
+
+export const accentText: Record<AccentName, string> = {
+    magenta: "text-(--magenta)",
+    cyan: "text-(--cyan)",
+    amber: "text-(--amber)"
 };
 
 /*

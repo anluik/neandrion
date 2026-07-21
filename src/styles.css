@@ -2,10 +2,62 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark {
+    &:where([data-theme="dark"], [data-theme="dark"] *) {
+        @slot;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        &:where(
+            :root:not([data-theme="light"]),
+            :root:not([data-theme="light"]) *
+        ) {
+            @slot;
+        }
+    }
+}
+
 @theme {
     --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
     --font-display: "Bricolage Grotesque", "Manrope", ui-sans-serif, sans-serif;
     --font-mono: "Spline Sans Mono", ui-monospace, "SF Mono", monospace;
+
+    --animate-drift: ns-drift 26s ease-in-out infinite;
+    --animate-bloom: ns-bloom 9s ease-in-out infinite;
+    --animate-rise: ns-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+
+    @keyframes ns-drift {
+        0%,
+        100% {
+            background-position: 0% 0%;
+        }
+        50% {
+            background-position: 0% 14%;
+        }
+    }
+
+    @keyframes ns-bloom {
+        0%,
+        100% {
+            opacity: 0.45;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.9;
+            transform: scale(1.07);
+        }
+    }
+
+    @keyframes ns-rise {
+        from {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 }
 
 /*
@@ -34,6 +86,31 @@
     --side-bg: oklch(0.93 0.025 70);
     --code-bg: oklch(0.92 0.022 75);
     --scrim: oklch(0.45 0.06 45 / 0.35);
+
+    /* Backdrop layers, painted with `bg-(image:--sky)` and friends. Theme
+     * independent: they either read the tokens above or sit on top of them. */
+    --sky: linear-gradient(
+        180deg,
+        var(--bg-top) 0%,
+        var(--bg0) 58%,
+        var(--bg0) 100%
+    );
+    --ember: radial-gradient(
+        70% 120% at 62% 112%,
+        var(--bg-ember),
+        transparent 70%
+    );
+    --bloom-warm: radial-gradient(
+        closest-side,
+        oklch(0.72 0.23 350 / 0.15),
+        transparent
+    );
+    --bloom-cool: radial-gradient(
+        closest-side,
+        oklch(0.8 0.13 195 / 0.12),
+        transparent
+    );
+    --grain: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22/%3E%3C/filter%3E%3Crect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22 opacity=%220.6%22/%3E%3C/svg%3E");
 }
 
 :root[data-theme="dark"] {
@@ -81,313 +158,5 @@
         --side-bg: oklch(0.165 0.045 282);
         --code-bg: oklch(0.155 0.045 280);
         --scrim: oklch(0.12 0.05 285 / 0.6);
-    }
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html,
-body,
-#app {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    color: var(--t1);
-    font-family: var(--font-sans);
-    background: var(--bg0);
-    overflow-wrap: anywhere;
-    transition:
-        background-color 0.5s ease,
-        color 0.5s ease;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-::selection {
-    background: var(--magenta-soft);
-}
-
-a {
-    color: var(--cyan);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
-    transition:
-        color 0.2s ease,
-        text-shadow 0.2s ease;
-}
-
-a:hover {
-    color: var(--magenta);
-}
-
-code {
-    font-family: var(--font-mono);
-    font-size: 0.88em;
-    color: var(--cyan);
-    border: 1px solid var(--line);
-    background: var(--code-bg);
-    border-radius: 7px;
-    padding: 2px 7px;
-}
-
-pre code {
-    border: 0;
-    background: transparent;
-    padding: 0;
-    border-radius: 0;
-    font-size: inherit;
-    color: inherit;
-}
-
-.page-wrap {
-    width: min(920px, calc(100% - 2rem));
-    margin-inline: auto;
-}
-
-.mono-label {
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    color: var(--t2);
-}
-
-.glow-dot {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    border-radius: 99px;
-    flex-shrink: 0;
-    background: var(--dot-c);
-    box-shadow: 0 0 8px var(--dot-c);
-}
-
-.dot-magenta {
-    --dot-c: var(--magenta);
-}
-
-.dot-cyan {
-    --dot-c: var(--cyan);
-}
-
-.dot-amber {
-    --dot-c: var(--amber);
-}
-
-.theme-dot {
-    --dot-c: var(--amber);
-}
-
-[data-theme="dark"] .theme-dot {
-    --dot-c: var(--magenta);
-}
-
-.theme-label-night {
-    display: none;
-}
-
-[data-theme="dark"] .theme-label-night {
-    display: inline;
-}
-
-[data-theme="dark"] .theme-label-day {
-    display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .theme-dot {
-        --dot-c: var(--magenta);
-    }
-
-    :root:not([data-theme="light"]) .theme-label-night {
-        display: inline;
-    }
-
-    :root:not([data-theme="light"]) .theme-label-day {
-        display: none;
-    }
-}
-
-.accent-magenta {
-    --grp-c: var(--magenta);
-    --grp-bg: var(--magenta-soft);
-}
-
-.accent-cyan {
-    --grp-c: var(--cyan);
-    --grp-bg: var(--cyan-soft);
-}
-
-.accent-amber {
-    --grp-c: var(--amber);
-    --grp-bg: var(--amber-soft);
-}
-
-.shelf-link {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    padding: 7px 8px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: var(--t1);
-    font-size: 13.5px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.shelf-link:hover {
-    background: var(--grp-bg);
-    color: var(--grp-c);
-    text-shadow: 0 0 12px var(--grp-c);
-}
-
-.shelf-link:focus-visible {
-    outline: 2px solid var(--cyan);
-    outline-offset: -2px;
-}
-
-.shelf-frame {
-    transition:
-        translate 300ms cubic-bezier(0.4, 0, 0.2, 1),
-        visibility 300ms,
-        background-color 0.5s ease,
-        border-color 0.5s ease;
-}
-
-.ghost-control {
-    cursor: pointer;
-    background: transparent;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    color: var(--t2);
-    font-family: var(--font-mono);
-    font-size: 13px;
-    padding: 4px 8px;
-    transition: all 0.25s ease;
-}
-
-.ghost-control:hover {
-    border-color: var(--cyan);
-    color: var(--cyan);
-    box-shadow: var(--glow-c);
-}
-
-.stage-sky {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        180deg,
-        var(--bg-top) 0%,
-        var(--bg0) 58%,
-        var(--bg0) 100%
-    );
-    background-size: 100% 130%;
-    animation: ns-drift 26s ease-in-out infinite;
-    pointer-events: none;
-    transition: all 0.5s ease;
-}
-
-.stage-ember {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 46%;
-    background: radial-gradient(
-        70% 120% at 62% 112%,
-        var(--bg-ember),
-        transparent 70%
-    );
-    pointer-events: none;
-    transition: all 0.5s ease;
-}
-
-.bloom {
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(closest-side, var(--bloom-c), transparent);
-    filter: blur(10px);
-    animation: ns-pulse var(--bloom-dur, 9s) ease-in-out var(--bloom-delay, 0s)
-        infinite;
-    pointer-events: none;
-}
-
-.bloom-warm {
-    --bloom-c: oklch(0.72 0.23 350 / 0.15);
-}
-
-.bloom-cool {
-    --bloom-c: oklch(0.8 0.13 195 / 0.12);
-}
-
-.grain {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.05;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22/%3E%3C/filter%3E%3Crect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22 opacity=%220.6%22/%3E%3C/svg%3E");
-}
-
-.panel {
-    background: var(--s1);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    transition:
-        background-color 0.5s ease,
-        border-color 0.5s ease;
-}
-
-.rise-in {
-    animation: rise-in 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes ns-pulse {
-    0%,
-    100% {
-        opacity: 0.45;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.9;
-        transform: scale(1.07);
-    }
-}
-
-@keyframes ns-drift {
-    0%,
-    100% {
-        background-position: 0% 0%;
-    }
-    50% {
-        background-position: 0% 14%;
-    }
-}
-
-@keyframes rise-in {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .bloom,
-    .stage-sky,
-    .rise-in {
-        animation: none;
-    }
-
-    .shelf-frame {
-        transition: none;
     }
 }

@@ -1,10 +1,10 @@
 export default function HomeView() {
     return (
         <main className="relative min-h-full overflow-hidden">
-            <div className="stage-sky" />
-            <div className="stage-ember" />
-            <div className="bloom bloom-warm left-[-8%] top-[6%] h-95 w-120" />
-            <div className="bloom bloom-cool right-[-6%] top-[30%] h-90 w-110 [--bloom-dur:12s] [--bloom-delay:2.4s]" />
+            <div className="pointer-events-none absolute inset-0 animate-drift bg-(image:--sky) bg-size-[100%_130%] motion-reduce:animate-none" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[46%] bg-(image:--ember)" />
+            <div className="pointer-events-none absolute left-[-8%] top-[6%] h-95 w-120 animate-bloom rounded-full bg-(image:--bloom-warm) blur-[10px] motion-reduce:animate-none" />
+            <div className="pointer-events-none absolute right-[-6%] top-[30%] h-90 w-110 animate-bloom rounded-full bg-(image:--bloom-cool) blur-[10px] [animation-delay:2.4s] [animation-duration:12s] motion-reduce:animate-none" />
 
             <div className="relative z-2 flex min-h-full flex-col items-center justify-center px-6 py-16 text-center md:px-15">
                 <div className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-(--cyan) [text-shadow:0_0_12px_var(--cyan-soft)]">
@@ -25,7 +25,7 @@ export default function HomeView() {
                 </div>
             </div>
 
-            <div className="grain z-5" />
+            <div className="pointer-events-none absolute inset-0 z-5 bg-(image:--grain) opacity-5 mix-blend-overlay" />
         </main>
     );
 }

@@ -1,11 +1,11 @@
 export default function AboutView() {
     return (
         <main className="relative min-h-full overflow-hidden">
-            <div className="stage-sky" />
-            <div className="stage-ember" />
-            <div className="page-wrap relative z-2 px-4 py-16">
-                <section className="panel rise-in p-6 sm:p-8">
-                    <p className="mono-label mb-2 uppercase text-(--cyan)!">
+            <div className="pointer-events-none absolute inset-0 animate-drift bg-(image:--sky) bg-size-[100%_130%] motion-reduce:animate-none" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[46%] bg-(image:--ember)" />
+            <div className="relative z-2 mx-auto w-[min(920px,calc(100%-2rem))] px-4 py-16">
+                <section className="animate-rise rounded-2xl border border-(--line) bg-(--s1) p-6 transition-colors duration-500 motion-reduce:animate-none sm:p-8">
+                    <p className="mb-2 font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-(--cyan)">
                         About
                     </p>
                     <h1 className="font-display mb-3 mt-0 text-4xl font-bold tracking-tight sm:text-5xl">
@@ -20,7 +20,7 @@ export default function AboutView() {
                     </p>
                 </section>
             </div>
-            <div className="grain z-5" />
+            <div className="pointer-events-none absolute inset-0 z-5 bg-(image:--grain) opacity-5 mix-blend-overlay" />
         </main>
     );
 }

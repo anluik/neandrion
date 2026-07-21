@@ -26,7 +26,7 @@ export default function TopBar({
             <Link
                 to="/"
                 title="Home"
-                className="flex flex-1 items-center gap-2.5 text-inherit no-underline hover:text-inherit hover:[text-shadow:0_0_12px_var(--cyan)]"
+                className="flex flex-1 items-center gap-2.5 hover:[text-shadow:0_0_12px_var(--cyan)]"
             >
                 <Logo />
                 <span className="font-display text-base font-bold">
@@ -41,7 +41,7 @@ export default function TopBar({
                 aria-label="Open menu"
                 aria-expanded={open}
                 aria-controls="shelf"
-                className="ghost-control flex items-center px-1.5! py-1.5!"
+                className="flex cursor-pointer items-center rounded-lg border border-(--line) p-1.5 text-(--t2) transition-all duration-250 hover:border-(--cyan) hover:text-(--cyan) hover:shadow-(--glow-c)"
             >
                 <Menu className="size-4.5" aria-hidden />
             </button>

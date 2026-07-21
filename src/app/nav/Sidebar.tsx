@@ -49,7 +49,7 @@ export default function Sidebar({
             />
             <aside
                 id="shelf"
-                className={`shelf-frame fixed inset-y-0 left-0 z-30 w-62.5 shrink-0 overflow-hidden border-r border-(--line) bg-(--side-bg) md:visible md:relative md:z-10 md:translate-x-0 ${open ? "visible translate-x-0" : "invisible -translate-x-full"}`}
+                className={`fixed inset-y-0 left-0 z-30 w-62.5 shrink-0 overflow-hidden border-r border-(--line) bg-(--side-bg) transition-[translate,visibility,background-color,border-color] duration-[300ms,300ms,500ms,500ms] ease-in-out motion-reduce:transition-none md:visible md:relative md:z-10 md:translate-x-0 ${open ? "visible translate-x-0" : "invisible -translate-x-full"}`}
             >
                 <Shelf onDismiss={onClose} closeRef={closeRef} />
             </aside>
