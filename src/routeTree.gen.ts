@@ -15,7 +15,7 @@ import { Route as CommandPaletteRouteImport } from './routes/command-palette'
 import { Route as ElasticTabsRouteImport } from './routes/elastic-tabs'
 import { Route as MagneticCursorRouteImport } from './routes/magnetic-cursor'
 import { Route as StaggeredRevealRouteImport } from './routes/staggered-reveal'
-import { Route as UseBreakbeatRouteImport } from './routes/use-breakbeat'
+import { Route as UseDebounceRouteImport } from './routes/use-debounce'
 import { Route as UseUndoRouteImport } from './routes/use-undo'
 
 const IndexRoute = IndexRouteImport.update({
@@ -48,9 +48,9 @@ const StaggeredRevealRoute = StaggeredRevealRouteImport.update({
   path: '/staggered-reveal',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UseBreakbeatRoute = UseBreakbeatRouteImport.update({
-  id: '/use-breakbeat',
-  path: '/use-breakbeat',
+const UseDebounceRoute = UseDebounceRouteImport.update({
+  id: '/use-debounce',
+  path: '/use-debounce',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UseUndoRoute = UseUndoRouteImport.update({
@@ -66,7 +66,7 @@ export interface FileRoutesByFullPath {
   '/elastic-tabs': typeof ElasticTabsRoute
   '/magnetic-cursor': typeof MagneticCursorRoute
   '/staggered-reveal': typeof StaggeredRevealRoute
-  '/use-breakbeat': typeof UseBreakbeatRoute
+  '/use-debounce': typeof UseDebounceRoute
   '/use-undo': typeof UseUndoRoute
 }
 export interface FileRoutesByTo {
@@ -76,7 +76,7 @@ export interface FileRoutesByTo {
   '/elastic-tabs': typeof ElasticTabsRoute
   '/magnetic-cursor': typeof MagneticCursorRoute
   '/staggered-reveal': typeof StaggeredRevealRoute
-  '/use-breakbeat': typeof UseBreakbeatRoute
+  '/use-debounce': typeof UseDebounceRoute
   '/use-undo': typeof UseUndoRoute
 }
 export interface FileRoutesById {
@@ -87,7 +87,7 @@ export interface FileRoutesById {
   '/elastic-tabs': typeof ElasticTabsRoute
   '/magnetic-cursor': typeof MagneticCursorRoute
   '/staggered-reveal': typeof StaggeredRevealRoute
-  '/use-breakbeat': typeof UseBreakbeatRoute
+  '/use-debounce': typeof UseDebounceRoute
   '/use-undo': typeof UseUndoRoute
 }
 export interface FileRouteTypes {
@@ -99,7 +99,7 @@ export interface FileRouteTypes {
     | '/elastic-tabs'
     | '/magnetic-cursor'
     | '/staggered-reveal'
-    | '/use-breakbeat'
+    | '/use-debounce'
     | '/use-undo'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -109,7 +109,7 @@ export interface FileRouteTypes {
     | '/elastic-tabs'
     | '/magnetic-cursor'
     | '/staggered-reveal'
-    | '/use-breakbeat'
+    | '/use-debounce'
     | '/use-undo'
   id:
     | '__root__'
@@ -119,7 +119,7 @@ export interface FileRouteTypes {
     | '/elastic-tabs'
     | '/magnetic-cursor'
     | '/staggered-reveal'
-    | '/use-breakbeat'
+    | '/use-debounce'
     | '/use-undo'
   fileRoutesById: FileRoutesById
 }
@@ -130,7 +130,7 @@ export interface RootRouteChildren {
   ElasticTabsRoute: typeof ElasticTabsRoute
   MagneticCursorRoute: typeof MagneticCursorRoute
   StaggeredRevealRoute: typeof StaggeredRevealRoute
-  UseBreakbeatRoute: typeof UseBreakbeatRoute
+  UseDebounceRoute: typeof UseDebounceRoute
   UseUndoRoute: typeof UseUndoRoute
 }
 
@@ -178,11 +178,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StaggeredRevealRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/use-breakbeat': {
-      id: '/use-breakbeat'
-      path: '/use-breakbeat'
-      fullPath: '/use-breakbeat'
-      preLoaderRoute: typeof UseBreakbeatRouteImport
+    '/use-debounce': {
+      id: '/use-debounce'
+      path: '/use-debounce'
+      fullPath: '/use-debounce'
+      preLoaderRoute: typeof UseDebounceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/use-undo': {
@@ -202,7 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   ElasticTabsRoute: ElasticTabsRoute,
   MagneticCursorRoute: MagneticCursorRoute,
   StaggeredRevealRoute: StaggeredRevealRoute,
-  UseBreakbeatRoute: UseBreakbeatRoute,
+  UseDebounceRoute: UseDebounceRoute,
   UseUndoRoute: UseUndoRoute,
 }
 export const routeTree = rootRouteImport

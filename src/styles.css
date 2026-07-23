@@ -25,6 +25,8 @@
     --animate-drift: ns-drift 26s ease-in-out infinite;
     --animate-bloom: ns-bloom 9s ease-in-out infinite;
     --animate-rise: ns-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    --animate-commit: ns-commit 700ms ease-out both;
+    --animate-settle: ns-settle 5s ease-out forwards;
 
     @keyframes ns-drift {
         0%,
@@ -56,6 +58,35 @@
         to {
             opacity: 1;
             transform: translateY(0);
+        }
+    }
+
+    @keyframes ns-commit {
+        from {
+            opacity: 0.85;
+            transform: translate(-50%, 50%) scale(0.35);
+        }
+        to {
+            opacity: 0;
+            transform: translate(-50%, 50%) scale(2.6);
+        }
+    }
+
+    @keyframes ns-settle {
+        0% {
+            opacity: 0;
+            transform: translate(-50%, calc(-50% + 7px)) scale(0.5);
+        }
+        14% {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        70% {
+            opacity: 0.65;
+        }
+        100% {
+            opacity: 0;
+            transform: translate(-50%, calc(-50% - 12px)) scale(0.85);
         }
     }
 }

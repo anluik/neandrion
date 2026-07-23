@@ -33,7 +33,7 @@ export const experimentGroups: Array<ExperimentGroup> = [
         label: "HOOKS",
         accent: "cyan",
         items: [
-            { index: "#009", title: "useBreakbeat", to: "/use-breakbeat" },
+            { index: "#009", title: "useDebounce", to: "/use-debounce" },
             { index: "#006", title: "useUndo", to: "/use-undo" }
         ]
     },
