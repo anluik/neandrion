@@ -50,6 +50,7 @@ The implemented look comes from the `HomeScene` design in the "Neandrion Design 
 
 ## Code structure (firm preferences — follow these)
 
+- Do NOT add any comments to the code!
 - One component per file, and the file is named after the component. Multiple components in one file are acceptable only rarely, when they are super closely related and only one of them — the main component — is exported. Default to separate files even then.
 - Prefer using `const` instead of `function` when declaring components. Each component is exported as default at the end of the file.
 - `src/routes/` holds only thin TanStack Router route files: route config plus an imported view component. No UI code in route files.
@@ -59,7 +60,7 @@ The implemented look comes from the `HomeScene` design in the "Neandrion Design 
 - `src/components/` is only for components genuinely shared across packages; `src/hooks/` for shared hooks.
 - Imports: use the `#/` alias when importing across packages, relative paths within a package.
 - Use direct type imports instead of accessing types via namespace (e.g. React.ReactNode vs ReactNode + type import) unless 3 or more types have been imported from the same namespace in one file.
-- Keep code comments minimal; only explain non-standard patterns
+- Always create an interface for component props. Name of the interface must be component name + "Props". Type can be used instead of interface when there is a need to create a union.
 
 ## Theming mechanics
 

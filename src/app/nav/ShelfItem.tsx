@@ -1,6 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import GlowDot from "#/components/GlowDot";
-import { statusAccent } from "#/experiments";
 import type { AccentName, Experiment, ExperimentGroup } from "#/experiments";
 
 const link =
@@ -28,10 +26,11 @@ export default function ShelfItem({
                 {item.index}
             </span>
             <span className="min-w-0 flex-1 truncate">{item.title}</span>
-            <GlowDot
-                accent={statusAccent[item.status]}
-                title={item.status}
-                className="size-1.5"
+            {/* Position marker for ShelfDot */}
+            <span
+                aria-hidden
+                data-dot-slot={item.index}
+                className="size-1.5 shrink-0"
             />
         </>
     );

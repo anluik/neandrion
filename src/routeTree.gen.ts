@@ -11,6 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as CommandPaletteRouteImport } from './routes/command-palette'
+import { Route as ElasticTabsRouteImport } from './routes/elastic-tabs'
+import { Route as MagneticCursorRouteImport } from './routes/magnetic-cursor'
+import { Route as StaggeredRevealRouteImport } from './routes/staggered-reveal'
+import { Route as UseBreakbeatRouteImport } from './routes/use-breakbeat'
+import { Route as UseUndoRouteImport } from './routes/use-undo'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +28,110 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommandPaletteRoute = CommandPaletteRouteImport.update({
+  id: '/command-palette',
+  path: '/command-palette',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ElasticTabsRoute = ElasticTabsRouteImport.update({
+  id: '/elastic-tabs',
+  path: '/elastic-tabs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MagneticCursorRoute = MagneticCursorRouteImport.update({
+  id: '/magnetic-cursor',
+  path: '/magnetic-cursor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StaggeredRevealRoute = StaggeredRevealRouteImport.update({
+  id: '/staggered-reveal',
+  path: '/staggered-reveal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UseBreakbeatRoute = UseBreakbeatRouteImport.update({
+  id: '/use-breakbeat',
+  path: '/use-breakbeat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UseUndoRoute = UseUndoRouteImport.update({
+  id: '/use-undo',
+  path: '/use-undo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/command-palette': typeof CommandPaletteRoute
+  '/elastic-tabs': typeof ElasticTabsRoute
+  '/magnetic-cursor': typeof MagneticCursorRoute
+  '/staggered-reveal': typeof StaggeredRevealRoute
+  '/use-breakbeat': typeof UseBreakbeatRoute
+  '/use-undo': typeof UseUndoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/command-palette': typeof CommandPaletteRoute
+  '/elastic-tabs': typeof ElasticTabsRoute
+  '/magnetic-cursor': typeof MagneticCursorRoute
+  '/staggered-reveal': typeof StaggeredRevealRoute
+  '/use-breakbeat': typeof UseBreakbeatRoute
+  '/use-undo': typeof UseUndoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/command-palette': typeof CommandPaletteRoute
+  '/elastic-tabs': typeof ElasticTabsRoute
+  '/magnetic-cursor': typeof MagneticCursorRoute
+  '/staggered-reveal': typeof StaggeredRevealRoute
+  '/use-breakbeat': typeof UseBreakbeatRoute
+  '/use-undo': typeof UseUndoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/command-palette'
+    | '/elastic-tabs'
+    | '/magnetic-cursor'
+    | '/staggered-reveal'
+    | '/use-breakbeat'
+    | '/use-undo'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to:
+    | '/'
+    | '/about'
+    | '/command-palette'
+    | '/elastic-tabs'
+    | '/magnetic-cursor'
+    | '/staggered-reveal'
+    | '/use-breakbeat'
+    | '/use-undo'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/command-palette'
+    | '/elastic-tabs'
+    | '/magnetic-cursor'
+    | '/staggered-reveal'
+    | '/use-breakbeat'
+    | '/use-undo'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CommandPaletteRoute: typeof CommandPaletteRoute
+  ElasticTabsRoute: typeof ElasticTabsRoute
+  MagneticCursorRoute: typeof MagneticCursorRoute
+  StaggeredRevealRoute: typeof StaggeredRevealRoute
+  UseBreakbeatRoute: typeof UseBreakbeatRoute
+  UseUndoRoute: typeof UseUndoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +150,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/command-palette': {
+      id: '/command-palette'
+      path: '/command-palette'
+      fullPath: '/command-palette'
+      preLoaderRoute: typeof CommandPaletteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/elastic-tabs': {
+      id: '/elastic-tabs'
+      path: '/elastic-tabs'
+      fullPath: '/elastic-tabs'
+      preLoaderRoute: typeof ElasticTabsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/magnetic-cursor': {
+      id: '/magnetic-cursor'
+      path: '/magnetic-cursor'
+      fullPath: '/magnetic-cursor'
+      preLoaderRoute: typeof MagneticCursorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/staggered-reveal': {
+      id: '/staggered-reveal'
+      path: '/staggered-reveal'
+      fullPath: '/staggered-reveal'
+      preLoaderRoute: typeof StaggeredRevealRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/use-breakbeat': {
+      id: '/use-breakbeat'
+      path: '/use-breakbeat'
+      fullPath: '/use-breakbeat'
+      preLoaderRoute: typeof UseBreakbeatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/use-undo': {
+      id: '/use-undo'
+      path: '/use-undo'
+      fullPath: '/use-undo'
+      preLoaderRoute: typeof UseUndoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CommandPaletteRoute: CommandPaletteRoute,
+  ElasticTabsRoute: ElasticTabsRoute,
+  MagneticCursorRoute: MagneticCursorRoute,
+  StaggeredRevealRoute: StaggeredRevealRoute,
+  UseBreakbeatRoute: UseBreakbeatRoute,
+  UseUndoRoute: UseUndoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

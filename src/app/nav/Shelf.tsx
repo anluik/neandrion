@@ -4,6 +4,7 @@ import GhostButton from "#/components/GhostButton";
 import ThemeToggle from "#/components/ThemeToggle";
 import { experimentGroups } from "#/experiments";
 import Logo from "../../components/Logo.tsx";
+import ShelfDot from "./ShelfDot";
 import ShelfGroup from "./ShelfGroup";
 import type { RefObject } from "react";
 
@@ -41,7 +42,7 @@ export default function Shelf({
 
             <nav
                 aria-label="Experiments"
-                className="flex flex-1 flex-col gap-4.5 overflow-auto overscroll-contain pt-1.5"
+                className="relative flex flex-1 flex-col gap-4.5 overflow-auto overscroll-contain pt-1.5"
             >
                 {experimentGroups.map(group => (
                     <ShelfGroup
@@ -50,6 +51,7 @@ export default function Shelf({
                         onNavigate={onDismiss}
                     />
                 ))}
+                <ShelfDot />
             </nav>
 
             <div className="flex items-center justify-between gap-2.5 border-t border-(--line) pt-3">

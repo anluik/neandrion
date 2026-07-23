@@ -16,8 +16,7 @@ export default function HomeView() {
                 <p className="mb-0 mt-4.5 max-w-[50ch] text-pretty text-[16.5px] leading-[1.65] text-(--text-dim)">
                     Everything on the shelf is a small experiment in frontend
                     technique — animations, hooks, and interaction patterns,
-                    each living on its own page. The horizon behind this text is
-                    one of them.
+                    each living on its own page.
                 </p>
                 <div className="mt-6.5 flex items-center gap-2.5 font-mono text-xs tracking-widest text-(--text-dim)">
                     <span className="text-(--amber)">←</span>
